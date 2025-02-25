@@ -11,4 +11,3 @@ uri = MONGO_URI
 client = MongoClient(uri, server_api = ServerApi('1'))
 
 db = client[DATABASE_NAME]
-collection = db["product"]

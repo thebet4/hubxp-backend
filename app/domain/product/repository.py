@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 from fastapi import  HTTPException
 from datetime import datetime
 
-collection = db["items"]
+collection = db["product"]
 
 
 def get(skip: int = 0, limit: int = 0, name: str = ""):
