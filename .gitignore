@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env
+.env.development
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing & Coverage reports
+.coverage
+htmlcov/
+pytest_cache/
+
+# FastAPI / Uvicorn
+instance/
+*.db
+
+# MongoDB Dumps
+*.bson
+*.json
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Python dependencies
+pip-log.txt
+pip-delete-this-directory.txt
+
+# MacOS & System Files
+.DS_Store
+Thumbs.db
