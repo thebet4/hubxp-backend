@@ -3,7 +3,6 @@ from app.domain.product.schemas import all_products
 from app.domain.product.models import Product
 from bson.objectid import ObjectId
 from fastapi import  HTTPException
-from datetime import datetime
 
 collection = db["product"]
 
@@ -38,9 +37,9 @@ def update(product_id: str, data: Product):
     try:
         id = ObjectId(product_id)
         
-        exit_product = collection.find_one({"_id": id})
+        existing_product = collection.find_one({"_id": id})
 
-        if not exit_product:
+        if not existing_product:
             return
 
         collection.update_one({"_id":id}, {"$set":dict(data)})
@@ -53,9 +52,9 @@ def update(product_id: str, data: Product):
 def delete(product_id: str):
     try:
         id = ObjectId(product_id)
-        exit_product = collection.find_one({"_id": id})
+        existing_product = collection.find_one({"_id": id})
 
-        if not exit_product:
+        if not existing_product:
             return
         
         collection.delete_one({"_id":id})

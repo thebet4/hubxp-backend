@@ -4,7 +4,7 @@ def individual_product(product):
         "name": product["name"],
         "description": product["description"],
         "price": product["price"],
-        "category_ids": product["category_ids"],
+        "category_id": product["category_id"],
         "image_url": product["image_url"],
         "created_at": product["created_at"],
         "updated_at": product["updated_at"]

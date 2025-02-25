@@ -1,8 +1,9 @@
 from app.core.database import db
 from app.domain.category.schemas import all_categories
-from app.domain.product.schemas import all_products
 from app.domain.category.models import Category
 from bson.objectid import ObjectId
+from fastapi import  HTTPException
+
 
 collection = db["category"]
 product_collection = db["product"]
@@ -34,9 +35,9 @@ def update(category_id: str, data: Category):
     try:
         id = ObjectId(category_id)
         
-        exit_category = collection.find_one({"_id": id})
+        existing_category = collection.find_one({"_id": id})
 
-        if not exit_category:
+        if not existing_category:
             return
 
         collection.update_one({"_id":id}, {"$set":dict(data)})
@@ -49,15 +50,15 @@ def update(category_id: str, data: Category):
 def delete(category_id: str):
     try:
         id = ObjectId(category_id)
-        exit_category = collection.find_one({"_id": id})
+        existing_category = collection.find_one({"_id": id})
 
-        if not exit_category:
+        if not existing_category:
             return
         
         # Remove deleted category from all products
         product_collection.update_many(
             {},  # Apply to all documents
-            {"$pull": {"category_ids": category_id}}
+            {"$pull": {"category_id": category_id}}
         )
         
         collection.delete_one({"_id":id})
