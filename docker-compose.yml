@@ -1,6 +1,8 @@
 services:
   backend:
     container_name: hubxp
+    stdin_open: true 
+    tty: true        
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,7 +14,12 @@ services:
       - mongodb
     volumes:
       - ./app:/code/app
-
+    entrypoint: 
+      - "/bin/sh"
+      - "-ecx"
+      - >
+        python ./populate_mongo.py &&
+        uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --reload-dir "/code/app"
   mongodb:
     image: mongo
     container_name: mongodb
