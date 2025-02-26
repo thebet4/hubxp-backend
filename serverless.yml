@@ -1,0 +1,20 @@
+service: aws-python-http-api
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: python3.12
+
+functions:
+  generate-sales-report:
+    handler: serverless.handler.generate_sales_report
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+package:
+  include:
+    - serverless/**
+    - app/**
+    - requirements.txt

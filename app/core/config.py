@@ -5,5 +5,6 @@ import os
 load_dotenv()
 
 # Get MongoDB URI from .env
-MONGO_URI = os.getenv("MONGO_DB_CONNECTION_URL")
+MONGO_URI = os.getenv("MONGO_DB_CONNECTION_URL") 
+MONGO_SERVERLESS_URI = os.getenv("MONGO_DB_SERVERLESS_CONNECTION_URL")
 DATABASE_NAME = os.getenv("DATABASE_NAME", "mydatabase")
